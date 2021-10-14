@@ -3,13 +3,33 @@ import FuseLogo from "static/fuseicon.png";
 import { FusePoolMetric } from "utils/fetchFusePoolData";
 import { Pool } from "utils/poolUtils";
 
-/* Fuse Pools Marquee */
+/* traditional rari Fuse Pools (to be removed after MVP version)  */
 export interface HomepageFusePool {
   id: number;
   title?: string;
   subtitle?: string;
 }
+export interface NFTPools {
+  category: string;
+  title?: string;
+  subtitle?: string;
+  marketplace: string;
+  metadata?: string[];
 
+}
+export const HOMEPAGE_NFT_POOLS: NFTPools[] = [
+{ category: "Scientific NFT's",
+  marketplace: "rarible protocol"
+},
+{ category: "artistic NFT's",
+  marketplace: "Zora protocol",
+}
+// and so on , get the specs specified  and  then implement  the corresponding helper functions for display.
+
+
+]
+
+// TODO: remove the reference 
 export const HOMEPAGE_FUSE_POOLS: HomepageFusePool[] = [
   {
     id: 1,
@@ -64,7 +84,31 @@ export enum HomepageOpportunityType {
   Pool2Page,
   TranchesPage,
 }
+// @credits to 💐 for the NFTFinancialization talk , lets get the 101 implemented 
 
+export enum NFTFinancializationOppertunityType {
+DeFIPositionTokenization,
+LegalPositionTokenization,
+ScientificProjectsTokenization,
+Lending,
+}
+
+export interface NFTServices {
+  type: NFTFinancializationOppertunityType;
+  title: string;
+  subtitle: string;
+  icon: string;
+  bgColor: string;
+  // Conditional params
+  VaultType: NFTPools;
+  PoolId?: number;
+  vaultType?: Pool;
+  fusePoolId?: number;
+  fuseMetric?: FusePoolMetric;
+}
+
+
+// TODO: to be removed 
 export interface HomepageOpportunity {
   type: HomepageOpportunityType;
   title: string;
@@ -77,6 +121,9 @@ export interface HomepageOpportunity {
   fuseMetric?: FusePoolMetric;
 }
 
+
+
+// TODO: to be removed 
 export const HOMEPAGE_OPPORTUNIES: HomepageOpportunity[] = [
   {
     type: HomepageOpportunityType.EarnVault,
